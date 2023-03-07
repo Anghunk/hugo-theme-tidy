@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "head.html" . }}
+
+<body class="category">
+  <div class="header">
+    <div class="container">
+      <div class="site">
+        <h1 class="brand"><a href="/">{{ .Site.Title }}</a></h1>
+        <p class="desc">{{ .Site.Params.title }}</p>
+      </div>
+      <div id="menu" class="menu">
+        <ul>
+          <li><a href="/">首页</a></li>
+          {{ range .Site.Params.socials }}
+          <li><a href="{{ .link }}">{{ .name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>

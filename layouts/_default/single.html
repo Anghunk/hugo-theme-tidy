@@ -1,0 +1,39 @@
+{{ partial "header.html" . }}
+
+<div class="container">
+  <div class="category-wrap article-wrap">
+    <div class="article-header">
+      <h2 class="title">{{ .Title }}</h2>
+    </div>
+
+
+    {{ if in .Site.Params.mainSections .Type }}
+    {{ if .Date }}
+    <time datetime="{{ .Date.Format " 2006-01-02 15:04:05 MST" }}">
+      {{ .Date.Format "Jan 2, 2006" }}
+    </time>
+    {{ end }}
+    {{ end }}
+
+    {{ .TableOfContents }}
+
+    <div class="article-content markdown-body">
+      {{ .Site.Params.postHeaderContent | safeHTML }}
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ if in .Site.Params.mainSections .Type }}
+  <!-- comment -->
+  <br><br><br>
+  <div class="category-wrap">
+    <h4>评论~</h4>
+    <br>
+    {{ partial "comment.html" . }}
+  </div>
+
+  {{ end }}
+</div>
+
+
+{{ partial "footer.html" . }}

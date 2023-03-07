@@ -1,0 +1,24 @@
+{{ partial "header.html" . }}
+<div class="container">
+  <div class="category-wrap">
+    <ul>
+      {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+      {{ $projects := where .Site.RegularPages "Section" "projects" }}
+      {{ $pages = .Paginate ($pages) }}
+      {{ $archivesPage := first 2 (where .Site.RegularPages "Layout" "eq" "archives") }}
+
+      {{ range $pages.Pages }}
+
+      <li>
+        <a class="post-entry" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <time class="entry-time" datetime="{{ .Date.Format " 2006-01-02 15:04:05 MST" }}">
+          {{ .Date.Format "2006年1月2日"}}</time>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+<!-- pagination -->
+{{ partial "pagination.html" . }}
+{{ partial "footer.html" . }}
